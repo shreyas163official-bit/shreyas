@@ -1,0 +1,10 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Shreyas
+N:Shreyas;;;;
+EMAIL:shreyas@example.com
+TEL;TYPE=CELL:+1234567890
+TITLE:Creative Technologist
+NOTE:Video Editor | Graphic Designer | Web Developer
+URL:https://shreyas-portfolio.com
+END:VCARD

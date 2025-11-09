@@ -1,0 +1,99 @@
+Create a single-page portfolio using only HTML, CSS and JavaScript — no frameworks, no external build tools. The design should be cinematic, professional, and themed around cybersecurity + gaming: think a dark, filmic Netflix-style showcase for projects, with tasteful terminal / SOC dashboard elements and gaming/PlayStation nods. Keep it elegant and credible — no childish graphics or over-the-top “hacker” memes.
+
+Files & structure: deliver index.html, css/styles.css, js/main.js, and an assets/ folder with placeholders. Add insightful inline comments explaining how to swap media and edit text. Use CSS variables at the top for easy color and spacing tweaks.
+
+Global style / mood:
+
+Dark, cinematic background (deep charcoal / near-black) with soft vignette and subtle film grain overlay (CSS).
+
+Accent neon color(s) — one primary (teal/cyan) and one secondary (mild magenta or amber) for highlights.
+
+Use a clean geometric sans font (e.g., Inter or Poppins — load via Google Fonts locally if permitted).
+
+Design language: glassy panels, subtle neon outlines, thin borders, crisp rounded corners, and generous whitespace. Everything feels “pro” and slightly cinematic.
+
+Header & nav:
+
+Fixed, compact header with logo (text or small SVG), links: Home / About / Work / SOC / Gaming / Contact.
+
+Include a dark/light toggle that persists in localStorage and respects prefers-color-scheme.
+
+On small screens use a hamburger that opens a slide-in nav; keep transitions smooth and accessible.
+
+Hero / Cinematic Showcase:
+
+Create a Netflix-style horizontal poster carousel for featured projects (large cards that pan horizontally). Use left/right arrow controls and swipe support on mobile. Cards show project title, short tagline, year, and micro-badges (Video / Design / Web / SOC). Provide placeholders assets/poster1.jpg, etc.
+
+Under the carousel show a small “quick stats” strip: Experience Years, Projects, Active Tools (icons).
+
+Add a subtle parallax background (animated particles or slow-moving grid) for depth — GPU friendly via transform.
+
+About / Personal panel:
+
+Two-column layout on desktop: left = portrait (assets/me.jpg) in a stylized frame (gloss/scanline overlay), right = short, badass, professional bio (see bio below).
+
+Show experience chips: Video Editing — 3y, Graphic Design — 1y, Web Dev — 1y, and a dedicated Cybersecurity badge (add years if you want).
+
+Include a small skill radar or stacked bar visualization (pure CSS/JS) showing competency categories: Video, Design, Frontend, Pentesting, SOC, Scripting. Make it subtle and professional.
+
+Work / Portfolio (three content flavors):
+
+Use a carousel + grid approach: Featured projects in the top carousel; below it, a Netflix-like row for each category (Video Editing, Graphic Design, Web Dev, Security Tools / SOC Demos). Each row is horizontally scrollable with keyboard nav.
+
+Each card contains: thumbnail, title, short blurb, tags (tools), and a “View” CTA. Clicking opens an accessible modal with detailed content (video player or image carousel, project notes, role, tools, year, and optional link). Modal must be keyboard navigable and closable with Esc.
+
+Security / SOC demo cards: show interactive fake dashboards (placeholder data) — e.g., live alerts count, severity donut, recent events list, and a mini terminal viewer that replays sample commands/logs (text animation). Provide clear comments so the owner can replace fake data with real screenshots or log files.
+
+SOC / Terminal Section (interactive but safe):
+
+Create a dedicated “SOC” panel with two columns: left = live metrics cards (CPU load, alerts, connections, suspicious IPs) animated with mild transitions; right = an interactive terminal component that simulates typed commands and outputs.
+
+Terminal should be cosmetic (no actual system access) and allow the user to configure command sequences via a data- attribute or JSON block in js/main.js. Include copy button for logs, pause/play for typing effect, and keyboard focus styling. Use monospace styling, subtle green/amber prompt colors, and an accessible contrast.
+
+Add a compact “Threat Timeline” scroller below showing mock events with timestamps — make it visually like a SOC timeline (not cartoonish).
+
+Gaming / PlayStation corner:
+
+Add a short “Interests” card showing gaming rigs, favorite consoles (PlayStation icon), and a small gallery of gameplay/video edits. Include a stylized gamepad icon and a “Projects — Game Mod / Clips” row. Keep it tasteful and professional: show editing reels, mod ideas, or security-related gaming projects.
+
+Micro-interactions & animations:
+
+Use Intersection Observer to trigger distinct entry animations per section (hero: cinematic fade/pan; about: slide + mask reveal; carousels: slight 3D tilt on hover; SOC cards: pulse on alert increase). Avoid cookie-cutter fade-only effects.
+
+Add a smooth scroll progress bar at the top and subtle hover glows on actionable items.
+
+Make carousels accessible (aria roles, keyboard arrow nav).
+
+Performance & accessibility:
+
+Lazy-load heavy images and videos. Use loading="lazy" and preload only for the hero poster. Keep animations GPU-accelerated (transform, opacity).
+
+Semantic HTML, alt attributes, color contrast compliant, and modals accessible via keyboard. Provide aria attributes for dynamic widgets.
+
+Contact & CV:
+
+Contact form (Name, Email, Subject dropdown: Video / Design / Web / Security / Other, Message). Form action can be a mailto: placeholder or a commented fetch snippet for future backend.
+
+Offer a downloadable CV and vCard (assets/shreyas.pdf, assets/shreyas.vcf). Provide social links (GitHub, LinkedIn, PlayStation ID) as icons.
+
+Developer notes & customization:
+
+Put clear comment markers where to replace images, video files, and project metadata. Offer a simple JS array of project objects at the top of js/main.js so I can add/edit projects without editing HTML.
+
+Use CSS variables for colors, spacing, and accent neon. Add a short comment block explaining how to change accent color and font.
+
+Keep JS vanilla, modular (IIFE or single main.js), minimize global scope pollution, and avoid libraries. Provide helper functions for carousels, modals, progress bar, and terminal playback.
+
+Deliverables:
+
+index.html (clean, semantic, commented), css/styles.css (variables, responsive rules), js/main.js (project data and interactive behavior), /assets with placeholder images/videos and README comments at the top of index.html.
+
+Include at least 3 sample featured projects (1 video, 1 design, 1 web/security demo) and at least 6 smaller cards across rows to show structure.
+
+Tone for copy:
+
+Crisp, confident, professional. Short punchy headings. No AI-sounding fluff.
+
+Example short bio (use as-is in About):
+
+I’m Shreyas — a cybersecurity-minded creative who builds polished video edits, brand visuals, and secure front-end experiences. I bring 3 years of video editing, 1 year of graphic design, and 1 year of web development experience, and I’m obsessed with SOC workflows, automation, and game tech. I design with clarity and ship with security in mind.
