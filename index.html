@@ -1,496 +1,1031 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Shreyas - Cybersecurity Creative | Video Editor, Graphic Designer, Web Developer, SOC Analyst">
-    <title>Shreyas | Cybersecurity Creative</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Shreyas - Creative | Video Editor, Graphic Designer, Web Developer" />
+  <title>Shreyas | Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.ico" />
+  <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    /* PERFORMANCE OPTIMIZED ANIMATIONS */
+    * { 
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Hero Carousel - Smooth */
+    .hero .slide-image { 
+      width:100%; height:70vh; object-fit:cover; 
+      object-position:center; border-radius:16px;
+      will-change: transform;
+    }
+
+    /* Video Section - Ultra Smooth with Transitions */
+    .video-showcase { margin-bottom: 8rem; }
+    .video-container { 
+      max-width:1200px; margin:0 auto; 
+      padding:3rem 0; position:relative;
+    }
+    .video-wrapper {
+      position:relative; border-radius:20px; overflow:hidden;
+      box-shadow: 0 25px 80px rgba(0,245,212,.15);
+      background:var(--bg-secondary);
+    }
+    .video-wrapper video { 
+      width:100%; height:auto; display:block;
+      border-radius:20px;
+      transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .video-wrapper.transitioning video {
+      opacity: 0;
+    }
     
-    <!--
-    ╔═══════════════════════════════════════════════════════════╗
-    ║  SHREYAS CINEMATIC PORTFOLIO                              ║
-    ║  Cybersecurity + Gaming Themed Showcase                   ║
-    ║                                                           ║
-    ║  CUSTOMIZATION GUIDE:                                     ║
-    ║  • Edit project data in js/main.js (PROJECT_DATA array)  ║
-    ║  • Replace images in /assets folder                      ║
-    ║  • Update colors in css/styles.css (:root variables)     ║
-    ║  • Modify terminal commands in js/main.js                ║
-    ╚═══════════════════════════════════════════════════════════╝
-    -->
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="favicon.ico">
-    
-    <!-- Google Fonts - Inter for clean geometric sans -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="css/styles.css">
+    .video-controls {
+      display:flex; justify-content:center; align-items:center;
+      gap:1.5rem; margin-top:2rem;
+    }
+    .video-nav-btn {
+      background:var(--bg-card); border:2px solid var(--border-color);
+      width:50px; height:50px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer; transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      color:var(--accent-primary);
+    }
+    .video-nav-btn:hover {
+      background:var(--accent-primary); color:var(--bg-primary);
+      transform:scale(1.1); border-color:var(--accent-primary);
+      box-shadow:0 10px 30px rgba(0,245,212,.4);
+    }
+    .video-nav-btn:active {
+      transform:scale(0.95);
+    }
+    .video-indicator {
+      font-family:var(--font-mono); font-size:1.1rem;
+      color:var(--accent-primary); font-weight:600;
+      min-width:80px; text-align:center;
+      transition: all 0.3s ease;
+    }
+    #videoTitle {
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    #videoTitle.updating {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+
+    /* Posters - Clean Grid (Only 4 Best) */
+    .posters-showcase { margin-bottom:8rem; }
+    .posters-grid {
+      display:grid; 
+      grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+      gap:2.5rem; margin-top:3rem;
+    }
+    .poster-card {
+      position:relative; border-radius:16px; overflow:hidden;
+      cursor:pointer; background:var(--bg-card);
+      border:2px solid var(--border-subtle);
+      transition:all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transform:translateY(0);
+    }
+    .poster-card:hover {
+      transform:translateY(-15px);
+      border-color:var(--accent-primary);
+      box-shadow:0 25px 60px rgba(0,245,212,.25);
+    }
+    .poster-card img {
+      width:100%; aspect-ratio:1; object-fit:cover;
+      display:block; transition:transform 0.5s ease;
+    }
+    .poster-card:hover img {
+      transform:scale(1.08);
+    }
+    .poster-info {
+      position:absolute; bottom:0; left:0; right:0;
+      background:linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+      padding:1.5rem; transform:translateY(100%);
+      transition:transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .poster-card:hover .poster-info {
+      transform:translateY(0);
+    }
+    .poster-title {
+      color:#fff; font-weight:600; font-size:1.1rem;
+    }
+
+    /* Web Projects - Premium Cards */
+    .web-showcase { margin-bottom:8rem; }
+    .web-grid {
+      display:grid; 
+      grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+      gap:2.5rem; margin-top:3rem;
+    }
+    .web-card {
+      position:relative; background:var(--bg-card);
+      border-radius:16px; overflow:hidden; cursor:pointer;
+      border:2px solid var(--border-subtle);
+      transition:all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .web-card:hover {
+      transform:translateY(-12px);
+      border-color:var(--accent-primary);
+      box-shadow:0 20px 50px rgba(0,245,212,.3);
+    }
+    .web-card img {
+      width:100%; height:240px; object-fit:cover;
+      display:block; transition:transform 0.5s ease;
+    }
+    .web-card:hover img {
+      transform:scale(1.1);
+    }
+    .web-card-info {
+      padding:1.5rem;
+    }
+    .web-card-title {
+      font-weight:600; font-size:1.1rem; 
+      color:var(--text-primary); margin-bottom:0.5rem;
+    }
+    .web-card-desc {
+      color:var(--text-secondary); font-size:0.9rem;
+      line-height:1.6;
+    }
+
+    /* Banners - Elegant Scroll */
+    .banners-showcase { margin-bottom:8rem; }
+    .banners-container {
+      display:flex; flex-direction:column; gap:3rem;
+      margin-top:3rem;
+    }
+    .banner-item {
+      border-radius:16px; overflow:hidden;
+      box-shadow:0 15px 50px rgba(0,0,0,.3);
+      transition:all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor:pointer;
+    }
+    .banner-item:hover {
+      transform:translateY(-10px);
+      box-shadow:0 25px 70px rgba(0,245,212,.2);
+    }
+    .banner-item img {
+      width:100%; height:auto; display:block;
+      transition:transform 0.6s ease;
+    }
+    .banner-item:hover img {
+      transform:scale(1.05);
+    }
+
+    /* Gaming Grid */
+    .gaming-showcase { margin-bottom:8rem; }
+    .gaming-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+      gap:2.5rem; margin-top:3rem;
+    }
+    .gaming-card {
+      background:var(--bg-card); border-radius:16px;
+      overflow:hidden; cursor:pointer;
+      border:2px solid var(--border-subtle);
+      transition:all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .gaming-card:hover {
+      transform:translateY(-12px);
+      border-color:var(--accent-primary);
+      box-shadow:0 20px 50px rgba(0,245,212,.3);
+    }
+    .gaming-card img {
+      width:100%; height:220px; object-fit:cover;
+      display:block; transition:transform 0.5s ease;
+    }
+    .gaming-card:hover img {
+      transform:scale(1.1);
+    }
+    .gaming-card-info {
+      padding:1.5rem;
+    }
+    .gaming-card-title {
+      font-weight:600; color:var(--text-primary);
+      margin-bottom:0.5rem; font-size:1.1rem;
+    }
+    .gaming-card-desc {
+      color:var(--text-secondary); font-size:0.9rem;
+      line-height:1.6;
+    }
+
+    /* Category Icons */
+    .category-icon {
+      font-size:1.8rem; margin-right:0.75rem;
+      display:inline-block; vertical-align:middle;
+    }
+
+    /* Smooth Fade In */
+    .fade-in {
+      opacity:0; transform:translateY(30px);
+      animation:fadeInUp 0.6s ease forwards;
+    }
+    @keyframes fadeInUp {
+      to { opacity:1; transform:translateY(0); }
+    }
+
+    /* Stagger delays */
+    .fade-in:nth-child(1) { animation-delay:0.1s; }
+    .fade-in:nth-child(2) { animation-delay:0.2s; }
+    .fade-in:nth-child(3) { animation-delay:0.3s; }
+    .fade-in:nth-child(4) { animation-delay:0.4s; }
+    .fade-in:nth-child(5) { animation-delay:0.5s; }
+    .fade-in:nth-child(6) { animation-delay:0.6s; }
+
+    /* Modal Enhancement */
+    .modal-content {
+      max-width:95%; width:1100px;
+      animation:modalPop 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    @keyframes modalPop {
+      from { transform:scale(0.9) translateY(20px); opacity:0; }
+      to { transform:scale(1) translateY(0); opacity:1; }
+    }
+    .modal-body img, .modal-body video {
+      max-height:80vh; border-radius:16px;
+      margin-bottom:1.5rem;
+    }
+
+    /* Performance - GPU Acceleration */
+    .video-wrapper, .poster-card, .web-card, .banner-item, .gaming-card {
+      will-change: transform;
+      transform: translateZ(0);
+    }
+
+    @media (max-width:768px) {
+      .posters-grid, .web-grid, .gaming-grid {
+        grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+        gap:1.5rem;
+      }
+    }
+
+    /* Minimal theme variable defaults so you can test the toggle visually */
+    :root {
+      --bg-primary: #0b0f14;
+      --text-primary: #e6eef8;
+      --bg-card: #0f1720;
+      --border-subtle: rgba(255,255,255,0.06);
+      --accent-primary: #00f5d4;
+      --bg-secondary: #071018;
+    }
+    .light-theme {
+      --bg-primary: #ffffff;
+      --text-primary: #0b0f14;
+      --bg-card: #f7fafc;
+      --border-subtle: rgba(11,15,20,0.06);
+      --accent-primary: #0066ff;
+      --bg-secondary: #ffffff;
+    }
+    body { background:var(--bg-primary); color:var(--text-primary); transition:background .25s, color .25s; }
+    .theme-toggle .moon-icon { display: none; }
+    .light-theme .theme-toggle .sun-icon  { display: none; }
+    .light-theme .theme-toggle .moon-icon { display: inline-block; }
+
+  </style>
 </head>
 <body>
-    
-    <!-- Scroll Progress Bar -->
-    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
-    
-    <!-- Particle Background -->
-    <div class="particle-background" id="particleBackground" aria-hidden="true"></div>
-    
-    <!-- Header -->
-    <header class="header" id="header">
-        <nav class="nav container" aria-label="Main navigation">
-            <a href="#home" class="nav-logo" aria-label="Home">
-                <span class="logo-bracket">[</span>
-                <span class="logo-text">SHREYAS</span>
-                <span class="logo-bracket">]</span>
-            </a>
-            
-            <!-- Desktop Navigation -->
-            <ul class="nav-menu" id="navMenu" role="menubar">
-                <li role="none"><a href="#home" class="nav-link" role="menuitem">Home</a></li>
-                <li role="none"><a href="#about" class="nav-link" role="menuitem">About</a></li>
-                <li role="none"><a href="#work" class="nav-link" role="menuitem">Work</a></li>
-                <li role="none"><a href="#soc" class="nav-link" role="menuitem">SOC</a></li>
-                <li role="none"><a href="#gaming" class="nav-link" role="menuitem">Gaming</a></li>
-                <li role="none"><a href="#contact" class="nav-link" role="menuitem">Contact</a></li>
-            </ul>
-            
-            <!-- Theme Toggle -->
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode" title="Toggle theme">
-                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="5"></circle>
-                    <line x1="12" y1="1" x2="12" y2="3"></line>
-                    <line x1="12" y1="21" x2="12" y2="23"></line>
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                    <line x1="1" y1="12" x2="3" y2="12"></line>
-                    <line x1="21" y1="12" x2="23" y2="12"></line>
-                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                </svg>
-                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                </svg>
-            </button>
-            
-            <!-- Mobile Hamburger -->
-            <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </nav>
-    </header>
-    
-    <main class="main">
-        
-        <!-- Hero Section - Netflix-style Carousel -->
-        <section class="hero" id="home">
-            <div class="hero-carousel" id="heroCarousel">
-                <!-- Carousel will be populated by JavaScript -->
-                <button class="carousel-btn carousel-prev" id="heroPrev" aria-label="Previous project">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="15 18 9 12 15 6"></polyline>
-                    </svg>
-                </button>
-                <button class="carousel-btn carousel-next" id="heroNext" aria-label="Next project">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                </button>
-                <div class="carousel-track" id="heroTrack"></div>
-                <div class="carousel-indicators" id="heroIndicators"></div>
-            </div>
-            
-            <!-- Quick Stats -->
-            <div class="quick-stats container">
-                <div class="stat-item">
-                    <div class="stat-value">5+</div>
-                    <div class="stat-label">Years Experience</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">20+</div>
-                    <div class="stat-label">Projects Delivered</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">10+</div>
-                    <div class="stat-label">Active Tools</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">100%</div>
-                    <div class="stat-label">Secure by Design</div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- About Section -->
-        <section class="about section" id="about">
-            <div class="container">
-                <h2 class="section-title">
-                    <span class="title-bracket">&lt;</span>
-                    About Me
-                    <span class="title-bracket">/&gt;</span>
-                </h2>
-                
-                <div class="about-content">
-                    <div class="about-portrait">
-                        <!-- Replace assets/me.jpg with your actual portrait -->
-                        <div class="portrait-frame">
-                            <img src="assets/me.jpg" alt="Shreyas portrait" loading="lazy">
-                            <div class="scanline-overlay" aria-hidden="true"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="about-info">
-                        <!-- Bio text from requirements -->
-                        <p class="bio-text">
-                            I'm Shreyas — a cybersecurity-minded creative who builds polished video edits, brand visuals, and secure front-end experiences. I bring 3 years of video editing, 1 year of graphic design, and 1 year of web development experience, and I'm obsessed with SOC workflows, automation, and game tech. I design with clarity and ship with security in mind.
-                        </p>
-                        
-                        <!-- Experience Chips -->
-                        <div class="experience-chips">
-                            <div class="chip">
-                                <span class="chip-icon">🎬</span>
-                                <span class="chip-label">Video Editing</span>
-                                <span class="chip-value">3y</span>
-                            </div>
-                            <div class="chip">
-                                <span class="chip-icon">🎨</span>
-                                <span class="chip-label">Graphic Design</span>
-                                <span class="chip-value">1y</span>
-                            </div>
-                            <div class="chip">
-                                <span class="chip-icon">💻</span>
-                                <span class="chip-label">Web Development</span>
-                                <span class="chip-value">1y</span>
-                            </div>
-                            <div class="chip chip-highlight">
-                                <span class="chip-icon">🔐</span>
-                                <span class="chip-label">Cybersecurity</span>
-                                <span class="chip-value">2y</span>
-                            </div>
-                        </div>
-                        
-                        <!-- Skill Visualization -->
-                        <div class="skills-viz">
-                            <h3 class="skills-title">Core Competencies</h3>
-                            <div class="skill-bars">
-                                <div class="skill-bar" data-skill="90">
-                                    <div class="skill-bar-label">
-                                        <span>Video Production</span>
-                                        <span class="skill-bar-value">90%</span>
-                                    </div>
-                                    <div class="skill-bar-track">
-                                        <div class="skill-bar-fill" style="--skill-value: 90%"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-bar" data-skill="60">
-                                    <div class="skill-bar-label">
-                                        <span>Design</span>
-                                        <span class="skill-bar-value">60%</span>
-                                    </div>
-                                    <div class="skill-bar-track">
-                                        <div class="skill-bar-fill" style="--skill-value: 60%"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-bar" data-skill="75">
-                                    <div class="skill-bar-label">
-                                        <span>Frontend Dev</span>
-                                        <span class="skill-bar-value">75%</span>
-                                    </div>
-                                    <div class="skill-bar-track">
-                                        <div class="skill-bar-fill" style="--skill-value: 75%"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-bar" data-skill="80">
-                                    <div class="skill-bar-label">
-                                        <span>Pentesting</span>
-                                        <span class="skill-bar-value">80%</span>
-                                    </div>
-                                    <div class="skill-bar-track">
-                                        <div class="skill-bar-fill" style="--skill-value: 80%"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-bar" data-skill="85">
-                                    <div class="skill-bar-label">
-                                        <span>SOC Operations</span>
-                                        <span class="skill-bar-value">85%</span>
-                                    </div>
-                                    <div class="skill-bar-track">
-                                        <div class="skill-bar-fill" style="--skill-value: 85%"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-bar" data-skill="70">
-                                    <div class="skill-bar-label">
-                                        <span>Scripting</span>
-                                        <span class="skill-bar-value">70%</span>
-                                    </div>
-                                    <div class="skill-bar-track">
-                                        <div class="skill-bar-fill" style="--skill-value: 70%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Work Section -->
-        <section class="work section" id="work">
-            <div class="container">
-                <h2 class="section-title">
-                    <span class="title-bracket">&lt;</span>
-                    Portfolio
-                    <span class="title-bracket">/&gt;</span>
-                </h2>
-                
-                <!-- Category Carousels will be populated by JavaScript -->
-                <div id="workCategories"></div>
-            </div>
-        </section>
-        
-        <!-- SOC / Terminal Section -->
-        <section class="soc section" id="soc">
-            <div class="container">
-                <h2 class="section-title">
-                    <span class="title-bracket">&lt;</span>
-                    Security Operations Center
-                    <span class="title-bracket">/&gt;</span>
-                </h2>
-                
-                <div class="soc-grid">
-                    <!-- Live Metrics Cards -->
-                    <div class="soc-metrics">
-                        <div class="metric-card">
-                            <div class="metric-icon">⚡</div>
-                            <div class="metric-value" id="cpuLoad">45%</div>
-                            <div class="metric-label">CPU Load</div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-icon">🚨</div>
-                            <div class="metric-value pulse" id="activeAlerts">12</div>
-                            <div class="metric-label">Active Alerts</div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-icon">🌐</div>
-                            <div class="metric-value" id="connections">1,247</div>
-                            <div class="metric-label">Connections</div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-icon">⚠️</div>
-                            <div class="metric-value" id="suspiciousIPs">3</div>
-                            <div class="metric-label">Suspicious IPs</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Interactive Terminal -->
-                    <div class="terminal-container">
-                        <div class="terminal-header">
-                            <div class="terminal-controls">
-                                <span class="control-dot control-close"></span>
-                                <span class="control-dot control-minimize"></span>
-                                <span class="control-dot control-maximize"></span>
-                            </div>
-                            <div class="terminal-title">shreyas@soc-terminal:~$</div>
-                            <div class="terminal-actions">
-                                <button class="terminal-btn" id="terminalCopy" aria-label="Copy terminal output" title="Copy">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                    </svg>
-                                </button>
-                                <button class="terminal-btn" id="terminalToggle" aria-label="Pause/play terminal" title="Pause/Play">
-                                    <svg class="play-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                                    </svg>
-                                    <svg class="pause-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <rect x="6" y="4" width="4" height="16"></rect>
-                                        <rect x="14" y="4" width="4" height="16"></rect>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="terminal-body" id="terminalBody">
-                            <!-- Terminal content populated by JavaScript -->
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Threat Timeline -->
-                <div class="threat-timeline">
-                    <h3 class="timeline-title">Recent Threat Events</h3>
-                    <div class="timeline-scroll" id="threatTimeline">
-                        <!-- Timeline events populated by JavaScript -->
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Gaming Section -->
-        <section class="gaming section" id="gaming">
-            <div class="container">
-                <h2 class="section-title">
-                    <span class="title-bracket">&lt;</span>
-                    Gaming & Interests
-                    <span class="title-bracket">/&gt;</span>
-                </h2>
-                
-                <div class="gaming-content">
-                    <div class="gaming-intro">
-                        <div class="gamepad-icon" aria-hidden="true">🎮</div>
-                        <p class="gaming-text">
-                            When I'm not securing systems or editing videos, I'm exploring game tech, modding, and creating content around PlayStation gameplay. Gaming fuels my creativity and problem-solving skills.
-                        </p>
-                    </div>
-                    
-                    <!-- Gaming Projects Carousel -->
-                    <div class="gaming-carousel" id="gamingCarousel">
-                        <!-- Populated by JavaScript -->
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Contact Section -->
-        <section class="contact section" id="contact">
-            <div class="container">
-                <h2 class="section-title">
-                    <span class="title-bracket">&lt;</span>
-                    Get In Touch
-                    <span class="title-bracket">/&gt;</span>
-                </h2>
-                
-                <div class="contact-grid">
-                    <div class="contact-info">
-                        <p class="contact-intro">
-                            Ready to collaborate on your next project? Whether it's video production, web development, or security consulting, I'm here to help bring your vision to life.
-                        </p>
-                        
-                        <div class="contact-links">
-                            <a href="mailto:shreyas@example.com" class="contact-link">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                                    <polyline points="22,6 12,13 2,6"></polyline>
-                                </svg>
-                                shreyas@example.com
-                            </a>
-                            <a href="https://github.com/shreyas" class="contact-link" target="_blank" rel="noopener">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                </svg>
-                                GitHub
-                            </a>
-                            <a href="https://linkedin.com/in/shreyas" class="contact-link" target="_blank" rel="noopener">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                                </svg>
-                                LinkedIn
-                            </a>
-                            <a href="https://playstation.com" class="contact-link" target="_blank" rel="noopener">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M8.985 2.596v17.548l3.015 1.556V6.397zM20.633 15.555c-.725.457-1.897.717-3.168.717-1.719 0-3.168-.399-4.338-.918v2.16c1.17.519 2.622.918 4.338.918 1.267 0 2.44-.261 3.168-.717.725-.457 1.125-1.016 1.125-1.575 0-.559-.4-1.119-1.125-1.585zm-.718-6.824c-.75.452-1.987.701-3.402.701-1.713 0-3.168-.382-4.434-.879V6.397c1.266.496 2.724.879 4.434.879 1.415 0 2.652-.249 3.402-.701s1.134-.938 1.134-1.485c0-.547-.384-1.033-1.134-1.485s-1.987-.701-3.402-.701c-1.71 0-3.168.382-4.434.879V2.596l-3.015 1.556V17.7c0 .559.4 1.119 1.125 1.575.725.457 1.897.717 3.168.717 1.715 0 3.168-.382 4.434-.879v-2.16c-1.266.497-2.724.879-4.434.879-1.271 0-2.443-.261-3.168-.717-.725-.457-1.125-1.016-1.125-1.575V6.397h0z"/>
-                                </svg>
-                                PlayStation
-                            </a>
-                        </div>
-                        
-                        <!-- Download Buttons -->
-                        <div class="contact-downloads">
-                            <a href="assets/shreyas.pdf" download class="download-btn">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                    <polyline points="7 10 12 15 17 10"></polyline>
-                                    <line x1="12" y1="15" x2="12" y2="3"></line>
-                                </svg>
-                                Download CV
-                            </a>
-                            <a href="assets/shreyas.vcf" download class="download-btn">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                    <circle cx="9" cy="7" r="4"></circle>
-                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                </svg>
-                                Download vCard
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- Contact Form -->
-                    <form class="contact-form" id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required aria-required="true">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required aria-required="true">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <select id="subject" name="subject" required aria-required="true">
-                                <option value="">Select a subject</option>
-                                <option value="video">Video Production</option>
-                                <option value="design">Design</option>
-                                <option value="web">Web Development</option>
-                                <option value="security">Security Consulting</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="6" required aria-required="true"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="submit-btn">
-                            <span>Send Message</span>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <line x1="22" y1="2" x2="11" y2="13"></line>
-                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                            </svg>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-    
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p class="footer-text">&copy; 2025 Shreyas. Built with HTML, CSS, and JavaScript. Secure by design.</p>
-            <button class="back-to-top" id="backToTop" aria-label="Back to top">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M18 15l-6-6-6 6"/>
-                </svg>
-            </button>
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="particle-background" id="particleBackground"></div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="#home" class="nav-logo">
+        <span class="logo-bracket">[</span>
+        <span class="logo-text">SHREYAS</span>
+        <span class="logo-bracket">]</span>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#work" class="nav-link">Work</a></li>
+        <li><a href="#interest" class="nav-link">Interest</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle></svg>
+        <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+
+      <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="main">
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="hero-carousel container" id="heroCarousel">
+        <button class="carousel-btn carousel-prev" id="heroPrev">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <button class="carousel-btn carousel-next" id="heroNext">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+
+        <div class="carousel-track" id="heroTrack"></div>
+        <div class="carousel-indicators" id="heroIndicators"></div>
+      </div>
+
+      <div class="quick-stats container">
+        <div class="stat-item">
+          <div class="stat-value">3+</div>
+          <div class="stat-label">Years Experience</div>
         </div>
-    </footer>
-    
-    <!-- Modal for Project Details -->
-    <div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-        <div class="modal-overlay" id="modalOverlay"></div>
-        <div class="modal-content">
-            <button class="modal-close" id="modalClose" aria-label="Close modal">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-            </button>
-            <div class="modal-body" id="modalBody">
-                <!-- Content populated by JavaScript -->
-            </div>
+        <div class="stat-item">
+          <div class="stat-value">5+</div>
+          <div class="stat-label">Projects Delivered</div>
         </div>
+        <div class="stat-item">
+          <div class="stat-value">7+</div>
+          <div class="stat-label">Active Tools</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">Professional</div>
+          <div class="stat-label">Design Language</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about section" id="about">
+      <div class="container">
+        <h2 class="section-title">
+          <span class="title-bracket">&lt;</span> About Me <span class="title-bracket">/&gt;</span>
+        </h2>
+        <div class="about-content">
+          <div class="about-portrait">
+            <div class="portrait-frame">
+              <img src="assets/me.jpg" alt="Shreyas portrait" loading="lazy">
+              <div class="scanline-overlay"></div>
+            </div>
+          </div>
+
+          <div class="about-info">
+            <p class="bio-text">
+              Yo, I’m Shreyas. I love figuring out how things work and then making them look beautiful.
+Video editing is my playground DaVinci Resolve gives me the power to shape light, motion, and emotion. Canva keeps my design flow snappy and simple.
+I learn fast, create faster, and put heart into everything I touch. For me, it’s not just about editing or development it’s about bringing ideas to life with energy and intent.
+            </p>
+
+            <div class="experience-chips">
+              <div class="chip chip-highlight">
+                <span class="chip-icon">🎬</span>
+                <span class="chip-label">Video Editing</span>
+                <span class="chip-value">3y</span>
+              </div>
+              <div class="chip chip-highlight">
+                <span class="chip-icon">🎨</span>
+                <span class="chip-label">Graphic Design</span>
+                <span class="chip-value">1y</span>
+              </div>
+              <div class="chip chip-highlight">
+                <span class="chip-icon">💻</span>
+                <span class="chip-label">Web Development</span>
+                <span class="chip-value">1y</span>
+              </div>
+            </div>
+
+            <div class="skills-viz">
+              <h3 class="skills-title">Core Competencies</h3>
+              <div class="skill-bars">
+                <div class="skill-bar">
+                  <div class="skill-bar-label">
+                    <span>Video Production</span>
+                    <span class="skill-bar-value">90%</span>
+                  </div>
+                  <div class="skill-bar-track">
+                    <div class="skill-bar-fill" style="--skill-value:90%"></div>
+                  </div>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-bar-label">
+                    <span>Design</span>
+                    <span class="skill-bar-value">70%</span>
+                  </div>
+                  <div class="skill-bar-track">
+                    <div class="skill-bar-fill" style="--skill-value:70%"></div>
+                  </div>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-bar-label">
+                    <span>Frontend Dev</span>
+                    <span class="skill-bar-value">80%</span>
+                  </div>
+                  <div class="skill-bar-track">
+                    <div class="skill-bar-fill" style="--skill-value:80%"></div>
+                  </div>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-bar-label">
+                    <span>Scripting</span>
+                    <span class="skill-bar-value">65%</span>
+                  </div>
+                  <div class="skill-bar-track">
+                    <div class="skill-bar-fill" style="--skill-value:65%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section class="work section" id="work">
+      <div class="container">
+        <h2 class="section-title">
+          <span class="title-bracket">&lt;</span> Portfolio <span class="title-bracket">/&gt;</span>
+        </h2>
+
+        <!-- VIDEO SHOWREEL -->
+        <div class="work-category video-showcase">
+          <div class="category-header">
+            <h3 class="category-title">
+              <span class="category-icon">🎬</span>
+              Video Editing Showreel
+            </h3>
+          </div>
+
+          <div class="video-container">
+            <div class="video-wrapper">
+              <video id="currentVideo" controls playsinline preload="metadata">
+                <source src="assets/videos/Airobolt teaser.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="video-controls">
+              <button class="video-nav-btn" id="videoPrev" title="Previous video">◀</button>
+              <div style="text-align:center;">
+                <span class="video-indicator" id="videoIndicator">1 / 3</span>
+                <div style="color:var(--text-secondary);font-size:0.9rem;margin-top:0.5rem;" id="videoTitle">Brand Launch Teaser</div>
+              </div>
+              <button class="video-nav-btn" id="videoNext" title="Next video">▶</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- POSTERS (Best 4) -->
+        <div class="work-category posters-showcase">
+          <div class="category-header">
+            <h3 class="category-title">
+              <span class="category-icon">🎨</span>
+              Graphic Design Portfolio
+            </h3>
+          </div>
+
+          <div class="posters-grid" id="postersGrid"></div>
+        </div>
+
+        <!-- WEB DEVELOPMENT -->
+        <div class="work-category web-showcase">
+          <div class="category-header">
+            <h3 class="category-title">
+              <span class="category-icon">💻</span>
+              Web Development Projects
+            </h3>
+          </div>
+
+          <div class="web-grid" id="webGrid"></div>
+        </div>
+
+        <!-- E-COMMERCE BANNERS -->
+        <div class="work-category banners-showcase">
+          <div class="category-header">
+            <h3 class="category-title">
+              <span class="category-icon">🛍️</span>
+              E-commerce A+ Content
+            </h3>
+          </div>
+
+          <div class="banners-container" id="bannersContainer"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INTEREST -->
+    <section class="gaming section gaming-showcase" id="interest">
+      <div class="container">
+        <h2 class="section-title">
+          <span class="title-bracket">&lt;</span> My Interest <span class="title-bracket">/&gt;</span>
+        </h2>
+        <div class="gaming-content">
+          <div class="gaming-intro">
+            <div class="gamepad-icon">🎮</div>
+            <p class="gaming-text" id="interestText">
+              When I'm not editing or designing, I tinker with game tech, capture highlight reels, and prototype creative ideas.
+            </p>
+          </div>
+          <div class="gaming-grid" id="gamingGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact section" id="contact">
+      <div class="container">
+        <h2 class="section-title">
+          <span class="title-bracket">&lt;</span> Get In Touch <span class="title-bracket">/&gt;</span>
+        </h2>
+
+        <div class="contact-grid">
+          <div class="contact-info">
+            <p class="contact-intro">
+              Ready to collaborate? I work on video edits, brand visuals, and front-end sites. Drop a message or reach out directly.
+            </p>
+
+            <div class="contact-links">
+              <a href="tel:+918722539237" class="contact-link">+91 8722539237</a>
+              <a href="mailto:shreyas163.official@gmail.com" class="contact-link">shreyas163.official@gmail.com</a>
+              <a href="https://github.com/shreyas" class="contact-link" target="_blank" rel="noopener">GitHub</a>
+              <a href="https://linkedin.com/in/shreyas" class="contact-link" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
+
+            <div class="contact-downloads">
+              <a href="assets/shreyas.pdf" download class="download-btn">Download CV</a>
+              <a href="assets/shreyas.vcf" download class="download-btn">Download vCard</a>
+            </div>
+          </div>
+
+          <div style="background:var(--bg-card);padding:12px;border-radius:16px;min-height:450px;border:2px solid var(--border-subtle);">
+            <iframe src="https://forms.gle/1JyuGWJFt9vaj4LNA" 
+              title="Contact form" 
+              style="width:100%;height:100%;min-height:420px;border:0;border-radius:12px;">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-text">&copy; 2025 Shreyas. Crafted with passion.</p>
+      <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 15l-6-6-6 6"/>
+        </svg>
+      </button>
     </div>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal" id="projectModal" role="dialog" aria-modal="true">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">×</button>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+  // OPTIMIZED PORTFOLIO JAVASCRIPT
+  const DATA = {
+    hero: [
+      { id:1, title:'Creative Video Editor', tagline:'Cinematic storytelling with DaVinci Resolve', year:'2025', image:'assets/shreyas1.jpeg', badges:['Video'] },
+      { id:2, title:'Graphic Designer', tagline:'Brand identity & visual communication', year:'2025', image:'assets/shreyas3.jpeg', badges:['Design'] },
+      { id:3, title:'Web Developer', tagline:'Modern responsive websites', year:'2025', image:'assets/shreyas2.jpeg', badges:['Web'] }
+    ],
+    videos: [
+      { src:'assets/videos/Airobolt teaser.mp4', title:'Brand Launch Teaser', desc:'Airobolt brand reveal campaign' },
+      { src:'assets/videos/airobolt f1 2.mp4', title:'F1 Concept Reel', desc:'F1 car concept for social media' },
+      { src:'assets/videos/airobolt reel finial.mp4', title:'Social Media Reel', desc:'Engaging social media content' }
+    ],
+    posters: [
+      { id:201, title:'Creative Poster 1', src:'assets/posters/1.jpeg' },
+      { id:202, title:'Creative Poster 2', src:'assets/posters/2.jpeg' },
+      { id:203, title:'Creative Poster 3', src:'assets/posters/3.jpeg' },
+      { id:204, title:'Creative Poster 4', src:'assets/posters/4.jpeg' }
+    ],
+    web: [
+      { id:301, title:'MetaLogex About', src:'assets/web/About MetaLogex Page.png', desc:'Corporate website with animations' },
+      { id:302, title:'Hero Section', src:'assets/web/Hero section.png', desc:'Dynamic landing page hero' },
+      { id:303, title:'Services Showcase', src:'assets/web/Services Page.png', desc:'Full services page layout' },
+      { id:304, title:'Services Grid', src:'assets/web/Services section.png', desc:'Interactive services section' },
+      { id:305, title:'Value Proposition', src:'assets/web/Why Choose us section.png', desc:'Why choose us section' },
+      { id:306, title:'Cyber Theme 1', src:'assets/web/cyber 1.png', desc:'Cybersecurity portfolio' }
+    ],
+    banners: [
+      { id:401, title:'Hero Banner', src:'assets/projects/Hero Banner 1.jpg' },
+      { id:402, title:'Product Banner', src:'assets/projects/Banner 2.jpg' },
+      { id:403, title:'Promotional Banner', src:'assets/projects/Banner 3.jpg' },
+      { id:404, title:'Feature Banner', src:'assets/projects/Banner 4.jpg' },
+      { id:405, title:'Campaign Banner', src:'assets/projects/Banner 5.jpg' },
+      { id:406, title:'Brand Banner', src:'assets/projects/Banner 6.jpg' }
+    ],
+    gaming: [
+      { id:501, title:'Tech & Innovation Journey', src:'assets/gaming/my interest.png', desc:'My passion for learning, creating, and exploring new frontiers in programming, AI/ML, and data science.' },
+      { id:502, title:'Curiosity & Creativity', src:'assets/gaming/my interest2.png', desc:'Embracing culinary adventures, exploring nature, and solving critical problems with an inquisitive spirit.' }
+    ]
+  };
+
+  const App = {
+    heroIndex: 0,
+    videoIndex: 0,
     
-    <!-- Main JavaScript -->
-    <script src="js/main.js"></script>
-    
+    init() {
+      this.initTheme();
+      this.initNav();
+      this.initScrollProgress();
+      this.initHero();
+      this.initVideo();
+      this.initPosters();
+      this.initWeb();
+      this.initBanners();
+      this.initGaming();
+      this.initModal();
+      this.initBackToTop();
+      this.initSkillBars();
+      this.initInterestText();
+    },
+
+    // ---- REPLACED initTheme() ----
+    initTheme() {
+      const btn = document.getElementById('themeToggle');
+      const root = document.documentElement;
+
+      // Helper: set theme state in one place
+      const applyTheme = (theme) => {
+        if (theme === 'light') {
+          root.classList.add('light-theme');
+        } else {
+          root.classList.remove('light-theme');
+        }
+
+        // accessibility state
+        if (btn) btn.setAttribute('aria-pressed', theme === 'light' ? 'true' : 'false');
+
+        // update icon visibility if SVGs exist
+        const sun = btn?.querySelector('.sun-icon');
+        const moon = btn?.querySelector('.moon-icon');
+        if (sun && moon) {
+          sun.style.display = theme === 'light' ? 'none' : 'inline-block';
+          moon.style.display = theme === 'light' ? 'inline-block' : 'none';
+        }
+
+        try {
+          localStorage.setItem('theme', theme);
+        } catch (e) {
+          // localStorage may be disabled in some privacy modes — fail silently
+        }
+      };
+
+      // Decide initial theme:
+      // 1. stored preference in localStorage
+      // 2. else system preference (prefers-color-scheme)
+      // 3. else default to 'dark'
+      let stored = null;
+      try {
+        stored = localStorage.getItem('theme');
+      } catch (e) {
+        // ignore localStorage errors
+      }
+
+      const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+      const initialTheme = stored ? stored : (prefersLight ? 'light' : 'dark');
+
+      // Apply initial theme immediately
+      applyTheme(initialTheme);
+
+      // Attach click handler
+      if (btn) {
+        btn.addEventListener('click', () => {
+          const isLight = root.classList.contains('light-theme');
+          applyTheme(isLight ? 'dark' : 'light');
+        });
+      }
+    },
+    // ---- end replaced initTheme() ----
+
+    initNav() {
+      const hamburger = document.getElementById('navHamburger');
+      const menu = document.getElementById('navMenu');
+      
+      hamburger?.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        menu.classList.toggle('active');
+      });
+
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = document.querySelector(link.getAttribute('href'));
+          if(target) {
+            const headerHeight = 80;
+            window.scrollTo({
+              top: target.offsetTop - headerHeight,
+              behavior: 'smooth'
+            });
+          }
+          hamburger?.classList.remove('active');
+          menu?.classList.remove('active');
+        });
+      });
+    },
+
+    initScrollProgress() {
+      const bar = document.getElementById('scrollProgress');
+      window.addEventListener('scroll', () => {
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = (window.scrollY / h) * 100;
+        if(bar) bar.style.width = pct + '%';
+      }, { passive: true });
+    },
+
+    initHero() {
+      const track = document.getElementById('heroTrack');
+      const indicators = document.getElementById('heroIndicators');
+      const prev = document.getElementById('heroPrev');
+      const next = document.getElementById('heroNext');
+      if(!track) return;
+
+      DATA.hero.forEach((item, i) => {
+        const slide = document.createElement('div');
+        slide.className = 'carousel-slide';
+        slide.innerHTML = `
+          <img src="${item.image}" alt="${item.title}" class="slide-image" loading="${i===0?'eager':'lazy'}">
+          <div class="slide-overlay"></div>
+          <div class="slide-content">
+            <h1 class="slide-title">${item.title}</h1>
+            <p class="slide-tagline">${item.tagline}</p>
+            <div class="slide-meta">
+              ${item.badges.map(b => `<span class="meta-badge">${b}</span>`).join('')}
+              <span class="meta-badge">${item.year}</span>
+            </div>
+          </div>
+        `;
+        track.appendChild(slide);
+
+        const ind = document.createElement('div');
+        ind.className = `carousel-indicator ${i===0?'active':''}`;
+        ind.addEventListener('click', () => this.goToHeroSlide(i));
+        indicators.appendChild(ind);
+      });
+
+      prev?.addEventListener('click', () => this.changeHeroSlide(-1));
+      next?.addEventListener('click', () => this.changeHeroSlide(1));
+      
+      setInterval(() => this.changeHeroSlide(1), 5000);
+    },
+
+    changeHeroSlide(dir) {
+      this.heroIndex = (this.heroIndex + dir + DATA.hero.length) % DATA.hero.length;
+      this.goToHeroSlide(this.heroIndex);
+    },
+
+    goToHeroSlide(index) {
+      const track = document.getElementById('heroTrack');
+      const indicators = document.querySelectorAll('.carousel-indicator');
+      if(track) track.style.transform = `translateX(-${index * 100}%)`;
+      indicators.forEach((ind, i) => ind.classList.toggle('active', i === index));
+      this.heroIndex = index;
+    },
+
+    initVideo() {
+      const video = document.getElementById('currentVideo');
+      const indicator = document.getElementById('videoIndicator');
+      const titleEl = document.getElementById('videoTitle');
+      const prev = document.getElementById('videoPrev');
+      const next = document.getElementById('videoNext');
+      if(!video) return;
+
+      const updateVideo = () => {
+        const currentVid = DATA.videos[this.videoIndex];
+        video.src = currentVid.src;
+        video.load();
+        if(indicator) indicator.textContent = `${this.videoIndex + 1} / ${DATA.videos.length}`;
+        if(titleEl) titleEl.textContent = currentVid.title;
+      };
+
+      prev?.addEventListener('click', () => {
+        this.videoIndex = (this.videoIndex - 1 + DATA.videos.length) % DATA.videos.length;
+        updateVideo();
+      });
+
+      next?.addEventListener('click', () => {
+        this.videoIndex = (this.videoIndex + 1) % DATA.videos.length;
+        updateVideo();
+      });
+    },
+
+    initPosters() {
+      const grid = document.getElementById('postersGrid');
+      if(!grid) return;
+
+      DATA.posters.forEach((poster, i) => {
+        const card = document.createElement('div');
+        card.className = 'poster-card fade-in';
+        card.dataset.project = poster.id;
+        card.style.animationDelay = `${i * 0.1}s`;
+        card.innerHTML = `
+          <img src="${poster.src}" alt="${poster.title}" loading="lazy">
+          <div class="poster-info">
+            <div class="poster-title">${poster.title}</div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    },
+
+    initWeb() {
+      const grid = document.getElementById('webGrid');
+      if(!grid) return;
+
+      DATA.web.forEach((item, i) => {
+        const card = document.createElement('div');
+        card.className = 'web-card fade-in';
+        card.dataset.project = item.id;
+        card.style.animationDelay = `${i * 0.1}s`;
+        card.innerHTML = `
+          <img src="${item.src}" alt="${item.title}" loading="lazy">
+          <div class="web-card-info">
+            <h4 class="web-card-title">${item.title}</h4>
+            <p class="web-card-desc">${item.desc}</p>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    },
+
+    initBanners() {
+      const container = document.getElementById('bannersContainer');
+      if(!container) return;
+
+      DATA.banners.forEach((banner, i) => {
+        const item = document.createElement('div');
+        item.className = 'banner-item fade-in';
+        item.dataset.project = banner.id;
+        item.style.animationDelay = `${i * 0.15}s`;
+        item.innerHTML = `<img src="${banner.src}" alt="${banner.title}" loading="lazy">`;
+        container.appendChild(item);
+      });
+    },
+
+    initGaming() {
+      const grid = document.getElementById('gamingGrid');
+      if(!grid) return;
+
+      DATA.gaming.forEach((item, i) => {
+        const card = document.createElement('div');
+        card.className = 'gaming-card fade-in';
+        card.dataset.project = item.id;
+        card.style.animationDelay = `${i * 0.2}s`;
+        card.innerHTML = `
+          <img src="${item.src}" alt="${item.title}" loading="lazy">
+          <div class="gaming-card-info">
+            <h4 class="gaming-card-title">${item.title}</h4>
+            <p class="gaming-card-desc">${item.desc}</p>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    },
+
+    initModal() {
+      const modal = document.getElementById('projectModal');
+      const modalBody = document.getElementById('modalBody');
+      const modalClose = document.getElementById('modalClose');
+      const modalOverlay = document.getElementById('modalOverlay');
+
+      document.addEventListener('click', (e) => {
+        const card = e.target.closest('[data-project]');
+        if(card) {
+          e.preventDefault();
+          const id = parseInt(card.dataset.project);
+          this.openModal(id, modal, modalBody);
+        }
+      });
+
+      const closeModal = () => {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+        modalBody.querySelectorAll('video').forEach(v => {
+          try { v.pause(); } catch(e) {}
+        });
+      };
+
+      modalClose?.addEventListener('click', closeModal);
+      modalOverlay?.addEventListener('click', closeModal);
+      document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape') closeModal();
+      });
+    },
+
+    openModal(id, modal, modalBody) {
+      let project = [...DATA.posters, ...DATA.web, ...DATA.banners, ...DATA.gaming]
+        .find(p => p.id === id);
+      
+      if(!project) return;
+
+      const mediaHtml = project.video 
+        ? `<video controls autoplay style="width:100%;max-height:80vh;border-radius:16px">
+            <source src="${project.video}" type="video/mp4">
+          </video>`
+        : `<img src="${project.src}" alt="${project.title}" 
+            style="width:100%;max-height:80vh;object-fit:contain;border-radius:16px">`;
+
+      modalBody.innerHTML = `
+        ${mediaHtml}
+        <h2 class="modal-title">${project.title}</h2>
+        <p class="modal-description">${project.desc || 'Professional creative work showcasing attention to detail and modern design principles.'}</p>
+      `;
+      
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    },
+
+    initBackToTop() {
+      const btn = document.getElementById('backToTop');
+      window.addEventListener('scroll', () => {
+        btn?.classList.toggle('visible', window.scrollY > 400);
+      }, { passive: true });
+      
+      btn?.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    },
+
+    initSkillBars() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting) {
+            const fill = entry.target.querySelector('.skill-bar-fill');
+            if(fill) {
+              setTimeout(() => {
+                fill.style.width = fill.style.getPropertyValue('--skill-value');
+              }, 200);
+            }
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      document.querySelectorAll('.skill-bar').forEach(bar => {
+        const fill = bar.querySelector('.skill-bar-fill');
+        if(fill) fill.style.width = '0';
+        observer.observe(bar);
+      });
+    },
+
+    initInterestText() {
+      const el = document.getElementById('interestText');
+      if(!el) return;
+
+      const texts = [
+        "When I'm not editing or designing, I tinker with game tech, capture highlight reels, and prototype creative ideas.",
+        "I explore gaming environments, study cinematography in gameplay, and create compelling visual narratives.",
+        "From gameplay capture to post-production, I transform gaming moments into cinematic experiences."
+      ];
+
+      let index = 0;
+      const typeText = (text, callback) => {
+        el.textContent = '';
+        let i = 0;
+        const timer = setInterval(() => {
+          if(i < text.length) {
+            el.textContent += text[i];
+            i++;
+          } else {
+            clearInterval(timer);
+            setTimeout(callback, 3000);
+          }
+        }, 30);
+      };
+
+      const loop = () => {
+        typeText(texts[index], () => {
+          index = (index + 1) % texts.length;
+          loop();
+        });
+      };
+
+      loop();
+    }
+  };
+
+  // Initialize on DOM ready
+  if(document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => App.init());
+  } else {
+    App.init();
+  }
+  </script>
 </body>
 </html>

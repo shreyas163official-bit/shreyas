@@ -21,7 +21,7 @@ const PROJECT_DATA = {
             year: '2024',
             category: 'Security',
             badges: ['SOC', 'Dashboard', 'Automation'],
-            image: 'assets/posters/poster1.jpg',
+            image: 'assets/poster1.jpeg',
             description: 'Enterprise-grade security operations center dashboard with real-time threat intelligence and automated response capabilities.',
             role: 'Full Stack Developer & Security Engineer',
             tools: ['React', 'Node.js', 'MongoDB', 'Splunk', 'Python'],
@@ -34,7 +34,7 @@ const PROJECT_DATA = {
             year: '2024',
             category: 'Video',
             badges: ['Video', 'Editing', 'Gaming'],
-            image: 'assets/posters/poster2.jpg',
+            image: 'assets/poster2.jpeg',
             description: 'High-energy gaming montage featuring advanced editing techniques, color grading, and motion graphics.',
             role: 'Video Editor & Motion Designer',
             tools: ['Premiere Pro', 'After Effects', 'DaVinci Resolve'],
@@ -47,7 +47,7 @@ const PROJECT_DATA = {
             year: '2024',
             category: 'Design',
             badges: ['Design', 'Branding', 'Web'],
-            image: 'assets/posters/poster3.jpg',
+            image: 'assets/poster3.jpeg',
             description: 'Complete brand identity and web presence for a cybersecurity startup, featuring modern design and secure architecture.',
             role: 'Brand Designer & Web Developer',
             tools: ['Figma', 'Illustrator', 'HTML/CSS', 'JavaScript'],
@@ -56,28 +56,28 @@ const PROJECT_DATA = {
     ],
     
     video: [
-        { id: 10, title: 'PS5 Gameplay Reel', thumbnail: 'assets/gaming/gaming1.jpg', tags: ['Gaming', 'Editing'], description: 'Best moments compilation' },
-        { id: 11, title: 'Corporate Promo', thumbnail: 'assets/projects/design1.jpg', tags: ['Commercial', 'Motion'], description: 'Brand storytelling' }
+        { id: 10, title: 'PS5 Gameplay Reel', thumbnail: 'assets/airobolt_teaser.jpg', tags: ['Gaming', 'Editing'], description: 'Best moments compilation' },
+        { id: 11, title: 'Corporate Promo', thumbnail: 'assets/poster5.jpeg', tags: ['Commercial', 'Motion'], description: 'Brand storytelling' }
     ],
     
     design: [
-        { id: 20, title: 'Cyberpunk UI Kit', thumbnail: 'assets/projects/design1.jpg', tags: ['UI', 'Design System'], description: 'Futuristic interface components' },
-        { id: 21, title: 'Tech Posters', thumbnail: 'assets/projects/design2.jpg', tags: ['Print', 'Digital'], description: 'Modern poster series' }
+        { id: 20, title: 'Cyberpunk UI Kit', thumbnail: 'assets/poster6.jpeg', tags: ['UI', 'Design System'], description: 'Futuristic interface components' },
+        { id: 21, title: 'Tech Posters', thumbnail: 'assets/poster7.jpeg', tags: ['Print', 'Digital'], description: 'Modern poster series' }
     ],
     
     web: [
-        { id: 30, title: 'SecureAuth Portal', thumbnail: 'assets/projects/web1.jpg', tags: ['React', 'Auth'], description: 'Enterprise authentication system' },
-        { id: 31, title: 'Dashboard Analytics', thumbnail: 'assets/projects/web2.jpg', tags: ['Vue', 'Data Viz'], description: 'Real-time analytics platform' }
+        { id: 30, title: 'SecureAuth Portal', thumbnail: 'assets/cyber1.jpeg', tags: ['React', 'Auth'], description: 'Enterprise authentication system' },
+        { id: 31, title: 'Dashboard Analytics', thumbnail: 'assets/cyber2.jpeg', tags: ['Vue', 'Data Viz'], description: 'Real-time analytics platform' }
     ],
     
     security: [
-        { id: 40, title: 'Threat Hunter Tool', thumbnail: 'assets/posters/poster1.jpg', tags: ['Python', 'Security'], description: 'Automated threat detection' },
-        { id: 41, title: 'Vulnerability Scanner', thumbnail: 'assets/posters/poster3.jpg', tags: ['Nmap', 'Scanning'], description: 'Network security assessment' }
+        { id: 40, title: 'Threat Hunter Tool', thumbnail: 'assets/poster1.jpeg', tags: ['Python', 'Security'], description: 'Automated threat detection' },
+        { id: 41, title: 'Vulnerability Scanner', thumbnail: 'assets/poster3.jpeg', tags: ['Nmap', 'Scanning'], description: 'Network security assessment' }
     ],
     
     gaming: [
-        { id: 50, title: 'Game Mod: Cyber Enhancements', thumbnail: 'assets/gaming/gaming1.jpg', tags: ['Modding', 'Gaming'], description: 'Custom gameplay modifications' },
-        { id: 51, title: 'PlayStation Highlights', thumbnail: 'assets/gaming/gaming2.jpg', tags: ['PS5', 'Content'], description: 'Epic gaming moments' }
+        { id: 50, title: 'Game Mod: Cyber Enhancements', thumbnail: 'assets/airobot_reel_finial.jpg', tags: ['Modding', 'Gaming'], description: 'Custom gameplay modifications' },
+        { id: 51, title: 'PlayStation Highlights', thumbnail: 'assets/airobot_f1_2.jpg', tags: ['PS5', 'Content'], description: 'Epic gaming moments' }
     ]
 };
 
